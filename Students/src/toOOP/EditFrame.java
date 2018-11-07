@@ -61,14 +61,12 @@ public class EditFrame extends JFrame {
 	private JTextField textFieldFormOfStudy;
 	private JTextField textFieldCourse;
 	private JTextField textFieldStartEducation;
-	private JTextField textFieldEndEducation;
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JSeparator separator_2;
 	private JSeparator separator_3;
 	private JSeparator separator_4;
 	private JSeparator separator_5;
-	private JSeparator separator_6;
 	private JSeparator separator_8;
 	private JSeparator separator_9;
 	private JSeparator separator_7;
@@ -128,7 +126,6 @@ public class EditFrame extends JFrame {
 						textFieldFormOfStudy.setText(rsOne.getString("Form_Of_Study"));
 						textFieldCourse.setText(rsOne.getString("Cours"));
 						textFieldStartEducation.setText(rsOne.getString("Start_education"));
-						textFieldEndEducation.setText(rsOne.getString("End_education"));
 					}
 	
 					prst.close();
@@ -227,38 +224,22 @@ public class EditFrame extends JFrame {
 		contentPane.add(textFieldStartEducation);
 		textFieldStartEducation.setColumns(10);
 
-		JLabel lblEndEducation = new JLabel(
-				"\u041A\u0456\u043D\u0435\u0446 \u043D\u0430\u0432\u0447\u0430\u043D\u043D\u044F");
-		lblEndEducation.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-		lblEndEducation.setBounds(20, 609, 287, 23);
-		contentPane.add(lblEndEducation);
-
-		textFieldEndEducation = new JTextField();
-		textFieldEndEducation.setBounds(20, 643, 287, 40);
-		contentPane.add(textFieldEndEducation);
-		textFieldEndEducation.setColumns(10);
-
 		JButton btnInsert = new JButton("\u0412\u0432\u0435\u0441\u0442\u0438 \u0434\u0430\u043D\u0456");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					PreparedStatement prst = conn.prepareStatement(
 							"INSERT into student.info (PIB,Faculty,Speciality,Form_of_Study,Cours,Start_education) values (?,?,?,?,?,?)");
-//					PreparedStatement prstTwo = conn
-//							.prepareStatement("INSERT into student.info (End_education) values (?)");
 					prst.setString(1, textFieldPIB.getText());
 					prst.setString(2, textFieldFaculty.getText());
 					prst.setString(3, textFieldSpeciality.getText());
 					prst.setString(4, textFieldFormOfStudy.getText());
 					prst.setString(5, textFieldCourse.getText());
 					prst.setString(6, textFieldStartEducation.getText());
-					//prstTwo.setString(1, textFieldStartEducation.getText());
 					prst.execute();
-					//prstTwo.execute();
 					JOptionPane.showMessageDialog(null, "Дані збережено");
 
 					prst.close();
-					//prstTwo.close();
 
 
 				} catch (SQLException e1) {
@@ -282,16 +263,11 @@ public class EditFrame extends JFrame {
 							+ textFieldSpeciality.getText() + "' ,Form_of_Study='" + textFieldFormOfStudy.getText()
 							+ "' ,Cours='" + textFieldCourse.getText() + "' ,Start_education='"
 							+ textFieldStartEducation.getText() + "' where PIB='" + textFieldPIB.getText() + "'");
-//					PreparedStatement prstTwo = conn.prepareStatement(
-//							"UPDATE student.info set PIB='" + textFieldPIB.getText() + "' ,End_education='"
-//									+ textFieldEndEducation.getText() + "' where PIB='" + textFieldPIB.getText() + "'");
 
 					prst.execute();
-					//prstTwo.execute();
 					JOptionPane.showMessageDialog(null, "Дані оновлено");
 
 					prst.close();
-					//prstTwo.close();
 
 
 				} catch (SQLException e1) {
@@ -369,24 +345,18 @@ public class EditFrame extends JFrame {
 		separator_5.setBounds(8, 608, 305, 2);
 		contentPane.add(separator_5);
 
-		separator_6 = new JSeparator();
-		separator_6.setForeground(Color.GREEN);
-		separator_6.setBackground(Color.GREEN);
-		separator_6.setBounds(8, 694, 305, 2);
-		contentPane.add(separator_6);
-
 		separator_8 = new JSeparator();
 		separator_8.setBackground(Color.GREEN);
 		separator_8.setForeground(Color.GREEN);
 		separator_8.setOrientation(SwingConstants.VERTICAL);
-		separator_8.setBounds(311, 122, 2, 571);
+		separator_8.setBounds(311, 122, 2, 488);
 		contentPane.add(separator_8);
 
 		separator_9 = new JSeparator();
 		separator_9.setOrientation(SwingConstants.VERTICAL);
 		separator_9.setForeground(Color.GREEN);
 		separator_9.setBackground(Color.GREEN);
-		separator_9.setBounds(8, 122, 2, 571);
+		separator_9.setBounds(8, 122, 2, 488);
 		contentPane.add(separator_9);
 
 		separator_7 = new JSeparator();
@@ -442,7 +412,6 @@ public class EditFrame extends JFrame {
 				textFieldFormOfStudy.setText(null);
 				textFieldCourse.setText(null);
 				textFieldStartEducation.setText(null);
-				textFieldEndEducation.setText(null);
 			}
 		});
 		btnClear.setFont(new Font("Times New Roman", Font.PLAIN, 19));
