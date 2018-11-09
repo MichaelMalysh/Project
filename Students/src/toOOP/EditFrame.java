@@ -98,14 +98,14 @@ public class EditFrame extends JFrame {
 		ConnectionToSQL connect = new ConnectionToSQL();
 		conn = connect.connect();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1194, 754);
+		setBounds(100, 100, 1310, 755);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(525, 122, 643, 582);
+		scrollPane.setBounds(525, 122, 759, 582);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -461,7 +461,7 @@ public class EditFrame extends JFrame {
 		contentPane.add(separator_20);
 
 		JLabel lblNazva = new JLabel(
-				"\u0411\u0430\u0437\u0430 \u0434\u0430\u043D\u0438\u0445 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u0456\u0432, \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u0430 \u0437 \u0411\u0414 : Student.inho");
+				"\u0411\u0430\u0437\u0430 \u0434\u0430\u043D\u0438\u0445 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u0456\u0432, \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u0430 \u0437 \u0411\u0414 : Student.info");
 		lblNazva.setForeground(new Color(192, 192, 192));
 		lblNazva.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblNazva.setBounds(342, 11, 826, 85);

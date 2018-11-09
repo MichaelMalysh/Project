@@ -212,7 +212,7 @@ public class ConnectionToSQL {
 			// pib, faculty, speciality, course, formOfStudy, date);
 
 			sb.append(num + "\t").append(pib + "\t").append(faculty + "\t").append(speciality + "\t")
-					.append(course + "\t").append(formOfStudy + "\t").append(date + "\t");
+					.append(course + "\t").append(formOfStudy + "\t").append(date + "\t\n");
 		}
 		System.out.println(sb);
 		//JOptionPane.showMessageDialog(null, sb);

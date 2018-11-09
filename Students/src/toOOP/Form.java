@@ -78,10 +78,10 @@ public class Form {
 		conn = connect.connect();
 		frame = new JFrame();
 		frame.setTitle(
-				"\u041F\u0421 \u0437 \u043E\u0431\u043B\u0456\u043A\u0443 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u0456\u0432");
+				"\u0420\u043E\u0437\u0440\u043E\u0431\u043B\u0435\u043D\u043D\u044F \u041F\u0421 \u0437 \u043E\u0431\u043B\u0456\u043A\u0443 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u0456\u0432 \u0437\u0430 \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u043E\u043C");
 		frame.getContentPane().setBackground(SystemColor.control);
 		frame.getContentPane().setForeground(Color.BLACK);
-		frame.setBounds(100, 100, 717, 638);
+		frame.setBounds(100, 100, 717, 693);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -137,6 +137,12 @@ public class Form {
 		});
 		rdbtnDenna.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		rdbtnDenna.setBounds(20, 250, 79, 43);
+		
+		JRadioButton rdbtnDistanciyna = new JRadioButton("\u0434\u0438\u0441\u0442\u0430\u043D\u0446\u0456\u0439\u043D\u0430");
+		buttonGroup.add(rdbtnDistanciyna);
+		rdbtnDistanciyna.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		rdbtnDistanciyna.setBounds(198, 250, 130, 43);
+		frame.getContentPane().add(rdbtnDistanciyna);
 
 		frame.getContentPane().add(rdbtnDenna);
 		JComboBox comboBoxCourse = new JComboBox();
@@ -165,7 +171,7 @@ public class Form {
 		rdbtnZaochna.setBounds(101, 250, 85, 43);
 		frame.getContentPane().add(rdbtnZaochna);
 
-		JButton Result = new JButton("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442");
+		JButton Result = new JButton("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442 \u0432 \u0444\u043E\u0440\u043C\u0443");
 		Result.setBackground(SystemColor.activeCaption);
 		Result.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -181,8 +187,10 @@ public class Form {
 					String formOfStudy = "";
 					if (rdbtnDenna.isSelected()) {
 						formOfStudy = "денна";
-					} else {
+					} else if(rdbtnZaochna.isSelected()){
 						formOfStudy = "заочна";
+					}else {
+						formOfStudy = "дистанційна";
 					}
 					PreparedStatement prst = conn.prepareStatement(
 							"SELECT * FROM student.info where Form_of_study = ? and Cours = ? and (Faculty = ? or Speciality = ?) ");
@@ -221,7 +229,7 @@ public class Form {
 			}
 		});
 		Result.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		Result.setBounds(10, 547, 122, 41);
+		Result.setBounds(10, 547, 252, 41);
 		frame.getContentPane().add(Result);
 
 		JButton Exit = new JButton("\u0412\u0438\u0445\u0456\u0434");
@@ -247,7 +255,7 @@ public class Form {
 			}
 		});
 		btnReset.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnReset.setBounds(185, 547, 122, 41);
+		btnReset.setBounds(272, 547, 122, 41);
 		frame.getContentPane().add(btnReset);
 
 		JSeparator separator = new JSeparator();
@@ -279,7 +287,7 @@ public class Form {
 		labelCourse.setBounds(494, 214, 79, 29);
 		frame.getContentPane().add(labelCourse);
 
-		JButton btnNewButton = new JButton("\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043D\u043D\u044F");
+		JButton btnNewButton = new JButton("\u0414\u0456\u0457 \u0437 \u0411\u0414");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditFrame edit = new EditFrame();
@@ -289,7 +297,7 @@ public class Form {
 		});
 		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnNewButton.setBounds(367, 546, 155, 43);
+		btnNewButton.setBounds(404, 546, 155, 43);
 		frame.getContentPane().add(btnNewButton);
 
 		JScrollPane scrollPaneResult = new JScrollPane();
@@ -298,6 +306,62 @@ public class Form {
 
 		table = new JTable();
 		scrollPaneResult.setViewportView(table);
+		
+		JButton btnResultCons = new JButton("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442 \u0432 \u043A\u043E\u043D\u0441\u043E\u043B\u044C");
+		btnResultCons.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConnectionToSQL connect = new ConnectionToSQL();
+				connect.connect();
+				connect.statement();
+
+				try {
+					String tester = "";
+					String faculty = textFieldFaculty.getText();
+					 String speciality = textFieldSpecialuty.getText();
+					 int course = comboBoxCourse.getSelectedIndex() + 1;
+					String formOfStudy = "";
+					if (rdbtnDenna.isSelected()) {
+						formOfStudy = "денна";
+					} else if(rdbtnZaochna.isSelected()){
+						formOfStudy = "заочна";
+					}else {
+						formOfStudy = "дистанційна";
+					}
+				if ((faculty.contentEquals(tester)) &&
+				 (speciality.contentEquals(tester))) {
+				 connect.preparedStatement(course, formOfStudy);
+				 } else if ((speciality.contentEquals(tester))) {
+				 connect.preparedStatement(faculty, course, formOfStudy);
+				 } else if ((faculty.contentEquals(tester))) {
+				 connect.preparedStatement(speciality, course,
+				 formOfStudy);
+				 } else {
+				 connect.preparedStatement(faculty, speciality, course,
+				 formOfStudy);
+				 }
+			}catch(Exception ex1) {
+				ex1.printStackTrace();
+			}}
+		});
+		btnResultCons.setBackground(SystemColor.activeCaption);
+		btnResultCons.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		btnResultCons.setBounds(10, 599, 252, 43);
+		frame.getContentPane().add(btnResultCons);
+		
+		JButton btnNewButton_2 = new JButton("\u0414\u043E\u0432\u0456\u0434\u043A\u0430");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Киїський національний університет ім. Вадима Гетьмана\n"
+						+ "\tРобота студента:\n\tГрупи ІН-302\n\tСпеціальності 6i03\n"
+						+ "\tМалиша Михайла Максимовича","Довідка",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		btnNewButton_2.setBackground(SystemColor.inactiveCaption);
+		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		btnNewButton_2.setBounds(569, 599, 122, 43);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		
 
 	}
 }
