@@ -20,6 +20,7 @@ import java.awt.GraphicsEnvironment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -49,7 +50,7 @@ public class EditFrame extends JFrame {
 				try {
 					EditFrame frame = new EditFrame();
 					if (translucencySupported())//*
-	                    frame.setOpacity(0.9f);//*
+	                    frame.setOpacity(0.95f);//*
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -95,7 +96,7 @@ public class EditFrame extends JFrame {
 	private JButton btnClear;
 	private JSeparator separator_16;
 	private JTextField textFieldNumContract;
-	private final JLabel lblNewLabel = new JLabel("New label");
+	private final JLabel lblNewLabel = new JLabel("");
 	
 	public void refreshTable(){
 		try {
@@ -112,10 +113,10 @@ public class EditFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditFrame() {
+	public EditFrame(){
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\3course\\OOP\\РљР°СЂС‚.png"));
-		setTitle("Р‘Р°Р·Р° Р”Р°РЅРёС… Student.info");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
+		setTitle("\u0411\u0430\u0437\u0430 \u0414\u0430\u043D\u0438\u0445 Student.info");
 		ConnectionToSQL connect = new ConnectionToSQL();
 		conn = connect.connect();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -185,6 +186,7 @@ public class EditFrame extends JFrame {
 		contentPane.add(btnLoad);
 
 		labelPIB = new JLabel("\u041F\u0406\u0411");
+		labelPIB.setForeground(new Color(255, 255, 204));
 		labelPIB.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		labelPIB.setBounds(20, 99, 283, 23);
 		contentPane.add(labelPIB);
@@ -195,6 +197,7 @@ public class EditFrame extends JFrame {
 		textFieldPIB.setColumns(10);
 
 		JLabel lblFaculty = new JLabel("\u0424\u0430\u043A\u0443\u043B\u044C\u0442\u0435\u0442");
+		lblFaculty.setForeground(new Color(255, 255, 204));
 		lblFaculty.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblFaculty.setBounds(20, 269, 287, 23);
 		contentPane.add(lblFaculty);
@@ -206,6 +209,7 @@ public class EditFrame extends JFrame {
 
 		JLabel lblSpeciality = new JLabel(
 				"\u0421\u043F\u0435\u0446\u0456\u0430\u043B\u044C\u043D\u0456\u0441\u0442\u044C");
+		lblSpeciality.setForeground(new Color(255, 255, 204));
 		lblSpeciality.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblSpeciality.setBounds(20, 354, 287, 23);
 		contentPane.add(lblSpeciality);
@@ -217,6 +221,7 @@ public class EditFrame extends JFrame {
 
 		JLabel lblFormOfStudy = new JLabel(
 				"\u0424\u043E\u0440\u043C\u0430 \u043D\u0430\u0432\u0447\u0430\u043D\u043D\u044F");
+		lblFormOfStudy.setForeground(new Color(255, 255, 204));
 		lblFormOfStudy.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblFormOfStudy.setBounds(20, 439, 287, 23);
 		contentPane.add(lblFormOfStudy);
@@ -227,6 +232,7 @@ public class EditFrame extends JFrame {
 		textFieldFormOfStudy.setColumns(10);
 
 		JLabel lblCourse = new JLabel("\u041A\u0443\u0440\u0441");
+		lblCourse.setForeground(new Color(255, 255, 204));
 		lblCourse.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblCourse.setBounds(20, 524, 287, 23);
 		contentPane.add(lblCourse);
@@ -238,6 +244,7 @@ public class EditFrame extends JFrame {
 
 		JLabel lblStartEducation = new JLabel(
 				"\u041F\u043E\u0447\u0430\u0442\u043E\u043A \u043D\u0430\u0432\u0447\u0430\u043D\u043D\u044F");
+		lblStartEducation.setForeground(new Color(255, 255, 204));
 		lblStartEducation.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblStartEducation.setBounds(20, 612, 287, 23);
 		contentPane.add(lblStartEducation);
@@ -248,11 +255,12 @@ public class EditFrame extends JFrame {
 		textFieldStartEducation.setColumns(10);
 
 		JButton btnInsert = new JButton("\u0412\u0432\u0435\u0441\u0442\u0438 \u0434\u0430\u043D\u0456");
-		btnInsert.addActionListener(new ActionListener() {
+		btnInsert.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				try {
 					PreparedStatement prst = conn.prepareStatement(
 							"INSERT into student.info (PIB,Contract,Faculty,Speciality,Form_of_Study,Cours,Start_education) values (?,?,?,?,?,?,?)");
+					
 					prst.setString(1, textFieldPIB.getText());
 					prst.setString(2, textFieldNumContract.getText());
 					prst.setString(3, textFieldFaculty.getText());
@@ -261,13 +269,13 @@ public class EditFrame extends JFrame {
 					prst.setString(6, textFieldCourse.getText());
 					prst.setString(7, textFieldStartEducation.getText());
 					prst.execute();
-					JOptionPane.showMessageDialog(null, "Р”Р°РЅС– РІРІРµРґРµРЅРѕ");
-
+					JOptionPane.showMessageDialog(null, "Введено нові дані");
+					
 					prst.close();
 
 
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "РџРѕРјРёР»РєР° РїСЂРё РІРІРµРґРµРЅРЅС– РґР°РЅРёС…");
+					JOptionPane.showMessageDialog(null, "Сталася помилка при введенні даних");
 					e1.printStackTrace();
 				}
 				refreshTable();
@@ -289,13 +297,13 @@ public class EditFrame extends JFrame {
 							+ textFieldStartEducation.getText() + "' where PIB='" + textFieldPIB.getText() + "'");
 
 					prst.execute();
-					JOptionPane.showMessageDialog(null, "Р”Р°РЅС– РѕРЅРѕРІР»РµРЅРѕ");
+					JOptionPane.showMessageDialog(null, "Дані оновлено");
 
 					prst.close();
 
 
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "РџРѕРјРёР»РєР° РїСЂРё РѕРЅРѕРІР»РµРЅРЅС– РґР°РЅРёС…");
+					JOptionPane.showMessageDialog(null, "Сталася помилка при оновлнні даних");
 					e1.printStackTrace();
 				}
 				refreshTable();
@@ -308,7 +316,7 @@ public class EditFrame extends JFrame {
 		JButton btnDelete = new JButton("\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0434\u0430\u043D\u0456");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int action = JOptionPane.showConfirmDialog(null, "Р’РёРґР°Р»РµРЅРЅСЏ РґР°РЅРёС… С‚С–Р»СЊРєРё РїРѕ РџР†Р‘",
+				int action = JOptionPane.showConfirmDialog(null, "Видалення даних проводиться тільки по ПІБ",
 						"ГЏГ®ГўВіГ¤Г®Г¬Г«ГҐГ­Г­Гї", JOptionPane.OK_CANCEL_OPTION);
 				if (action == 0) {
 					try {
@@ -316,13 +324,13 @@ public class EditFrame extends JFrame {
 						PreparedStatement prst = conn.prepareStatement(delOne);
 
 						prst.execute();
-						JOptionPane.showMessageDialog(null, "Р”Р°РЅС– РІРёРґР°Р»РµРЅРѕ");
+						JOptionPane.showMessageDialog(null, "Дані видалено");
 
 						prst.close();
 
 
 					} catch (SQLException e1) {
-						JOptionPane.showMessageDialog(null, "РџРѕРјРёР»РєР° РїСЂРё РІРёРґР°Р»РµРЅРЅС– РґР°РЅРёС…");
+						JOptionPane.showMessageDialog(null, "Сталася помилка при видаленні даних");
 						e1.printStackTrace();
 					}
 					refreshTable();
@@ -486,12 +494,13 @@ public class EditFrame extends JFrame {
 
 		JLabel lblNazva = new JLabel(
 				"\u0411\u0430\u0437\u0430 \u0434\u0430\u043D\u0438\u0445 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u0456\u0432, \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u0430 \u0437 \u0411\u0414 : Student.info");
-		lblNazva.setForeground(Color.GREEN);
+		lblNazva.setForeground(new Color(255, 255, 204));
 		lblNazva.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblNazva.setBounds(342, 11, 826, 85);
 		contentPane.add(lblNazva);
 		
-		JLabel lblNumCountacr = new JLabel("РќРѕРјРµСЂ РєРѕРЅС‚СЂР°РєС‚Сѓ");
+		JLabel lblNumCountacr = new JLabel("\u041D\u043E\u043C\u0435\u0440 \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u0443");
+		lblNumCountacr.setForeground(new Color(255, 255, 204));
 		lblNumCountacr.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		lblNumCountacr.setBounds(20, 184, 287, 23);
 		contentPane.add(lblNumCountacr);
@@ -506,8 +515,8 @@ public class EditFrame extends JFrame {
 		separator_6.setBackground(Color.GREEN);
 		separator_6.setBounds(8, 694, 305, 2);
 		contentPane.add(separator_6);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Michael\\Pictures\\luxfon.com_10378.jpg"));
-		lblNewLabel.setBounds(0, 0, 1305, 727);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
+		lblNewLabel.setBounds(0, 0, 1284, 716);
 		contentPane.add(lblNewLabel);
 		
 		refreshTable();

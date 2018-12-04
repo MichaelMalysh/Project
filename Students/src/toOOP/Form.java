@@ -69,8 +69,9 @@ public class Form {
 				try {
 					Form window = new Form();
 					if (translucencySupported())//*
-	                    window.frame.setOpacity(0.9f);//*
+	                    window.frame.setOpacity(0.95f);//*
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -104,7 +105,7 @@ public class Form {
 		ConnectionToSQL connect = new ConnectionToSQL();
 		conn = connect.connect();
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\3course\\OOP\\\u041A\u0430\u0440\u0442.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle(
@@ -116,14 +117,15 @@ public class Form {
 
 		JLabel nazva = new JLabel(
 				"\u0417\u0430\u043F\u043E\u0432\u043D\u0456\u0442\u044C \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043A\u0440\u0438\u0442\u0435\u0440\u0456\u0457 \u0449\u043E\u0434\u043E \u0432\u0430\u0448\u043E\u0433\u043E \u0437\u0430\u043F\u0438\u0442\u0443");
-		nazva.setForeground(Color.GREEN);
+		nazva.setForeground(new Color(255, 255, 204));
 		nazva.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		nazva.setHorizontalAlignment(SwingConstants.CENTER);
 		nazva.setBounds(24, 11, 797, 31);
 		frame.getContentPane().add(nazva);
 
 		JLabel lblFaculty = new JLabel("\u0424\u0430\u043A\u0443\u043B\u044C\u0442\u0435\u0442");
-		lblFaculty.setForeground(SystemColor.menuText);
+		lblFaculty.setBackground(new Color(255, 255, 204));
+		lblFaculty.setForeground(new Color(255, 255, 204));
 		lblFaculty.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblFaculty.setBounds(35, 53, 155, 27);
 		frame.getContentPane().add(lblFaculty);
@@ -137,7 +139,7 @@ public class Form {
 
 		JLabel lblSpecialuty = new JLabel(
 				"\u0421\u043F\u0435\u0446\u0456\u0430\u043B\u044C\u043D\u0456\u0441\u0442\u044C");
-		lblSpecialuty.setForeground(SystemColor.menuText);
+		lblSpecialuty.setForeground(new Color(255, 255, 204));
 		lblSpecialuty.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblSpecialuty.setBounds(35, 129, 155, 27);
 		frame.getContentPane().add(lblSpecialuty);
@@ -150,13 +152,13 @@ public class Form {
 
 		JLabel lblFormOfStudy = new JLabel(
 				"\u0424\u043E\u0440\u043C\u0430 \u043D\u0430\u0432\u0447\u0430\u043D\u043D\u044F");
-		lblFormOfStudy.setForeground(SystemColor.menuText);
+		lblFormOfStudy.setForeground(new Color(255, 255, 204));
 		lblFormOfStudy.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		lblFormOfStudy.setBounds(35, 216, 170, 27);
 		frame.getContentPane().add(lblFormOfStudy);
 
 		JRadioButton rdbtnDenna = new JRadioButton("\u0434\u0435\u043D\u043D\u0430");
-		rdbtnDenna.setBackground(SystemColor.control);
+		rdbtnDenna.setBackground(new Color(255, 255, 204));
 		rdbtnDenna.setForeground(SystemColor.menuText);
 		rdbtnDenna.setSelected(true);
 		buttonGroup.add(rdbtnDenna);
@@ -169,7 +171,7 @@ public class Form {
 		rdbtnDenna.setBounds(39, 250, 79, 43);
 		
 		JRadioButton rdbtnDistanciyna = new JRadioButton("\u0434\u0438\u0441\u0442\u0430\u043D\u0446\u0456\u0439\u043D\u0430");
-		rdbtnDistanciyna.setBackground(SystemColor.control);
+		rdbtnDistanciyna.setBackground(new Color(255, 255, 204));
 		buttonGroup.add(rdbtnDistanciyna);
 		rdbtnDistanciyna.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		rdbtnDistanciyna.setBounds(207, 250, 130, 43);
@@ -177,6 +179,8 @@ public class Form {
 
 		frame.getContentPane().add(rdbtnDenna);
 		JComboBox comboBoxCourse = new JComboBox();
+		comboBoxCourse.setEditable(true);
+		comboBoxCourse.setBackground(new Color(255, 255, 204));
 		comboBoxCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -191,7 +195,7 @@ public class Form {
 		frame.getContentPane().add(comboBoxCourse);
 
 		JRadioButton rdbtnZaochna = new JRadioButton("\u0437\u0430\u043E\u0447\u043D\u0430");
-		rdbtnZaochna.setBackground(SystemColor.control);
+		rdbtnZaochna.setBackground(new Color(255, 255, 204));
 		rdbtnZaochna.setForeground(SystemColor.menuText);
 		buttonGroup.add(rdbtnZaochna);
 		rdbtnZaochna.addFocusListener(new FocusAdapter() {
@@ -382,7 +386,7 @@ public class Form {
 		frame.getContentPane().add(btnDovidka);
 		
 		JLabel lblFon = new JLabel("");
-		lblFon.setIcon(new ImageIcon("C:\\Users\\Michael\\Pictures\\luxfon.com_10378.jpg"));
+		lblFon.setIcon(new ImageIcon("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
 		lblFon.setBounds(0, 0, 855, 671);
 		frame.getContentPane().add(lblFon);
 		
