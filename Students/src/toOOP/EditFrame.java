@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
 
 import net.proteanit.sql.DbUtils;
 
@@ -30,21 +31,32 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.Cursor;
 
 public class EditFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	
+	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		int r = 255;
+		int g = 255;
+		int b = 224;
 		JFrame.setDefaultLookAndFeelDecorated(true);//*
+		UIManager.put("OptionPane.background", new ColorUIResource(r,g,b));
+		UIManager.put("Panel.background", new ColorUIResource(r,g,b));
+	    UIManager.put("Button.background", Color.white);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -69,6 +81,8 @@ public class EditFrame extends JFrame {
 	    }//*
 
 	Connection conn = null;
+	
+
 	private JButton btnLoad;
 	private JScrollBar scrollBar;
 	private JLabel labelPIB;
@@ -96,8 +110,8 @@ public class EditFrame extends JFrame {
 	private JButton btnClear;
 	private JSeparator separator_16;
 	private JTextField textFieldNumContract;
-	private final JLabel lblNewLabel = new JLabel("");
-	
+	private final JLabel lblFon = new JLabel("");
+	private final JLabel lblPicture = new JLabel("");
 	public void refreshTable(){
 		try {
 			PreparedStatement prst = conn.prepareStatement("SELECT * FROM student.info");
@@ -110,17 +124,17 @@ public class EditFrame extends JFrame {
 		}
 	}
 
+
 	/**
 	 * Create the frame.
 	 */
 	public EditFrame(){
-		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\misha\\SecondCoursesJava\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
 		setTitle("\u0411\u0430\u0437\u0430 \u0414\u0430\u043D\u0438\u0445 Student.info");
 		ConnectionToSQL connect = new ConnectionToSQL();
 		conn = connect.connect();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1310, 755);
+		setBounds(100, 100, 1283, 736);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -128,7 +142,7 @@ public class EditFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(525, 122, 759, 574);
+		scrollPane.setBounds(525, 122, 743, 488);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -192,6 +206,8 @@ public class EditFrame extends JFrame {
 		contentPane.add(labelPIB);
 
 		textFieldPIB = new JTextField();
+		textFieldPIB.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldPIB.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldPIB.setBounds(20, 133, 283, 40);
 		contentPane.add(textFieldPIB);
 		textFieldPIB.setColumns(10);
@@ -203,6 +219,9 @@ public class EditFrame extends JFrame {
 		contentPane.add(lblFaculty);
 
 		textFieldFaculty = new JTextField();
+		textFieldFaculty.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		textFieldFaculty.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldFaculty.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldFaculty.setBounds(20, 300, 287, 40);
 		contentPane.add(textFieldFaculty);
 		textFieldFaculty.setColumns(10);
@@ -215,6 +234,8 @@ public class EditFrame extends JFrame {
 		contentPane.add(lblSpeciality);
 
 		textFieldSpeciality = new JTextField();
+		textFieldSpeciality.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldSpeciality.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldSpeciality.setBounds(20, 388, 287, 40);
 		contentPane.add(textFieldSpeciality);
 		textFieldSpeciality.setColumns(10);
@@ -227,6 +248,8 @@ public class EditFrame extends JFrame {
 		contentPane.add(lblFormOfStudy);
 
 		textFieldFormOfStudy = new JTextField();
+		textFieldFormOfStudy.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldFormOfStudy.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldFormOfStudy.setBounds(20, 473, 287, 40);
 		contentPane.add(textFieldFormOfStudy);
 		textFieldFormOfStudy.setColumns(10);
@@ -250,6 +273,8 @@ public class EditFrame extends JFrame {
 		contentPane.add(lblStartEducation);
 
 		textFieldStartEducation = new JTextField();
+		textFieldStartEducation.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldStartEducation.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldStartEducation.setBounds(20, 643, 287, 40);
 		contentPane.add(textFieldStartEducation);
 		textFieldStartEducation.setColumns(10);
@@ -269,13 +294,13 @@ public class EditFrame extends JFrame {
 					prst.setString(6, textFieldCourse.getText());
 					prst.setString(7, textFieldStartEducation.getText());
 					prst.execute();
-					JOptionPane.showMessageDialog(null, "Введено нові дані");
+					JOptionPane.showMessageDialog(null, "<html>Р”Р°РЅС– РІРІРµРґРµРЅРѕ");
 					
 					prst.close();
 
 
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Сталася помилка при введенні даних");
+					JOptionPane.showMessageDialog(null, "<html>РџРѕРјРёР»РєР° РїСЂРё РІРІРµРґРµРЅРЅС– РґР°РЅРёС…");
 					e1.printStackTrace();
 				}
 				refreshTable();
@@ -297,13 +322,13 @@ public class EditFrame extends JFrame {
 							+ textFieldStartEducation.getText() + "' where PIB='" + textFieldPIB.getText() + "'");
 
 					prst.execute();
-					JOptionPane.showMessageDialog(null, "Дані оновлено");
+					JOptionPane.showMessageDialog(null, "<html> Р”Р°РЅС– РѕРЅРѕРІР»РµРЅРѕ");
 
 					prst.close();
 
 
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Сталася помилка при оновлнні даних");
+					JOptionPane.showMessageDialog(null, "<html> РџРѕРјРёР»РєР° РїСЂРё РѕРЅРѕРІР»РµРЅРЅС– РґР°РЅРёС…");
 					e1.printStackTrace();
 				}
 				refreshTable();
@@ -316,21 +341,21 @@ public class EditFrame extends JFrame {
 		JButton btnDelete = new JButton("\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0434\u0430\u043D\u0456");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int action = JOptionPane.showConfirmDialog(null, "Видалення даних проводиться тільки по ПІБ",
-						"ГЏГ®ГўВіГ¤Г®Г¬Г«ГҐГ­Г­Гї", JOptionPane.OK_CANCEL_OPTION);
+				int action = JOptionPane.showConfirmDialog(null, "<html> Р’РёРґР°Р»РµРЅРЅСЏ РїСЂРѕРІРѕРґРёС‚СЊСЃСЏ С‚С–Р»СЊРєРё РїРѕ РїРѕР»СЋ РџР†Р‘",
+						"Р’РёРґР°Р»РµРЅРЅСЏ РґР°РЅРёС…", JOptionPane.OK_CANCEL_OPTION);
 				if (action == 0) {
 					try {
 						String delOne = "DELETE FROM student.info where PIB='" + textFieldPIB.getText() + "' ";
 						PreparedStatement prst = conn.prepareStatement(delOne);
 
 						prst.execute();
-						JOptionPane.showMessageDialog(null, "Дані видалено");
+						JOptionPane.showMessageDialog(null, "<html> Р”Р°РЅС– РІРёРґР°Р»РµРЅРѕ");
 
 						prst.close();
 
 
 					} catch (SQLException e1) {
-						JOptionPane.showMessageDialog(null, "Сталася помилка при видаленні даних");
+						JOptionPane.showMessageDialog(null, "<html> РџРѕРјРёР»РєР° РїСЂРё РІРёРґР°Р»РµРЅРЅС– РґР°РЅРёС…");
 						e1.printStackTrace();
 					}
 					refreshTable();
@@ -439,6 +464,7 @@ public class EditFrame extends JFrame {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldPIB.setText(null);
+				textFieldNumContract.setText(null);
 				textFieldFaculty.setText(null);
 				textFieldSpeciality.setText(null);
 				textFieldFormOfStudy.setText(null);
@@ -506,6 +532,8 @@ public class EditFrame extends JFrame {
 		contentPane.add(lblNumCountacr);
 		
 		textFieldNumContract = new JTextField();
+		textFieldNumContract.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldNumContract.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textFieldNumContract.setColumns(10);
 		textFieldNumContract.setBounds(20, 218, 287, 40);
 		contentPane.add(textFieldNumContract);
@@ -515,9 +543,13 @@ public class EditFrame extends JFrame {
 		separator_6.setBackground(Color.GREEN);
 		separator_6.setBounds(8, 694, 305, 2);
 		contentPane.add(separator_6);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
-		lblNewLabel.setBounds(0, 0, 1284, 716);
-		contentPane.add(lblNewLabel);
+		lblFon.setIcon(new ImageIcon("E:\\misha\\SecondCoursesJava\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
+		lblFon.setBounds(0, 0, 1294, 716);
+		contentPane.add(lblFon);
+		
+		lblPicture.setIcon(new ImageIcon("E:\\misha\\Emoji\\library.png"));
+		lblPicture.setBounds(700, 85, 236, 270);
+		contentPane.add(lblPicture);
 		
 		refreshTable();
 	}

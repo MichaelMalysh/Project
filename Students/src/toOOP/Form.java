@@ -43,6 +43,7 @@ import javax.swing.Box;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
 
 //import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
 
@@ -63,7 +64,13 @@ public class Form {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		int r = 255;
+		int g = 255;
+		int b = 224;
 		JFrame.setDefaultLookAndFeelDecorated(true);//*
+		UIManager.put("OptionPane.background", new ColorUIResource(r,g,b));
+		UIManager.put("Panel.background", new ColorUIResource(r,g,b));
+	    UIManager.put("Button.background", Color.white);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -105,7 +112,7 @@ public class Form {
 		ConnectionToSQL connect = new ConnectionToSQL();
 		conn = connect.connect();
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\misha\\SecondCoursesJava\\Students\\pic\\photo_2018-11-19_21-50-09.jpg"));
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle(
@@ -158,7 +165,7 @@ public class Form {
 		frame.getContentPane().add(lblFormOfStudy);
 
 		JRadioButton rdbtnDenna = new JRadioButton("\u0434\u0435\u043D\u043D\u0430");
-		rdbtnDenna.setBackground(new Color(255, 255, 204));
+		rdbtnDenna.setBackground(new Color(255, 235, 205));
 		rdbtnDenna.setForeground(SystemColor.menuText);
 		rdbtnDenna.setSelected(true);
 		buttonGroup.add(rdbtnDenna);
@@ -171,6 +178,7 @@ public class Form {
 		rdbtnDenna.setBounds(39, 250, 79, 43);
 		
 		JRadioButton rdbtnDistanciyna = new JRadioButton("\u0434\u0438\u0441\u0442\u0430\u043D\u0446\u0456\u0439\u043D\u0430");
+		rdbtnDistanciyna.setForeground(SystemColor.menuText);
 		rdbtnDistanciyna.setBackground(new Color(255, 255, 204));
 		buttonGroup.add(rdbtnDistanciyna);
 		rdbtnDistanciyna.setFont(new Font("Times New Roman", Font.PLAIN, 19));
@@ -179,7 +187,6 @@ public class Form {
 
 		frame.getContentPane().add(rdbtnDenna);
 		JComboBox comboBoxCourse = new JComboBox();
-		comboBoxCourse.setEditable(true);
 		comboBoxCourse.setBackground(new Color(255, 255, 204));
 		comboBoxCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -371,11 +378,12 @@ public class Form {
 		JButton btnDovidka = new JButton("\u0414\u043E\u0432\u0456\u0434\u043A\u0430");
 		btnDovidka.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "<html><h3>Київський національний економічний університет ім. Вадима Гетьмана</h3>\n"
-						+ "<html><pre><font size='4' face='Times New Roman'>            Робота студента:</pre>\n"
-						+ "<html><pre><font size='4' face='Times New Roman'>            Факультету - ІІТвЕ</pre>\n"
-						+ "<html><pre><font size='4' face='Times New Roman'>            Групи - ІН-302</pre>\n"
-						+ "<html><pre><b><font size='4' face='Times New Roman'>            Малиша Михайла Максимовича</b></pre>","Довідка",JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "<html><i><font size='5' face='Courier New' color='green'>Київський національний економічний університет</font>\n"
+						+ "<html><i><font size='5' face='Courier New' color='green'> ім. Вадима Гетьмана</font>\n"
+						+ "<html><pre><font size='4' face='Times New Roman'>            Робота студента:</pre></font>\n"
+						+ "<html><pre><font size='4' face='Times New Roman'>            Факультету - ІІТвЕ</pre></font>\n"
+						+ "<html><pre><font size='4' face='Times New Roman'>            Групи - ІН-302</pre></font>\n"
+						+ "<html><pre><b><font size='4' face='Times New Roman'>            Малиша Михайла Максимовича</b></pre></font>","Довідка",JOptionPane.PLAIN_MESSAGE);
 //				 JOptionPane.showMessageDialog(null, 
 //		                 "<html><h2>Текст</h2><i>в виде разметки HTML</i>");
 			}
@@ -386,7 +394,7 @@ public class Form {
 		frame.getContentPane().add(btnDovidka);
 		
 		JLabel lblFon = new JLabel("");
-		lblFon.setIcon(new ImageIcon("C:\\Java\\JavaProjects\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
+		lblFon.setIcon(new ImageIcon("E:\\misha\\SecondCoursesJava\\Students\\pic\\photo_2018-11-19_21-50-38.jpg"));
 		lblFon.setBounds(0, 0, 855, 671);
 		frame.getContentPane().add(lblFon);
 		
